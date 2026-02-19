@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop Up</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            box-sizing: border-box;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content{
+            display:none;
+        }
+        .mainbox{
+            
+            position: relative;
+            background-color: rgb(116, 204, 178);
+            border:2px solid black;
+            border-radius: 5px;
+            width: 500px;
+            padding:10px;
+            margin:10px;
+            height: 300px;
+        }
+        .closebtn{
+            position: absolute;
+            font-size: 20px;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis perspiciatis nam consequuntur minus, ex nisi consectetur hic doloremque veritatis laboriosam tempora distinctio quod vero architecto cumque consequatur tempore commodi voluptatem aut rem voluptatum ea similique maxime! Natus, exercitationem! Sequi dolore assumenda minima repudiandae quam totam omnis. Earum neque quaerat ea.</p>
+    <div class="mainbox">
+        <div class="box">
+            <h1>Popup Box</h1>
+            <span class="closebtn">x</span>
+            <p>Popup Content Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, itaque.</p>
+            <button class="btn">close</button>
+        </div>
+    </div>
+    <script>
+        let close=document.querySelector('.closebtn')
+        let mainbox=document.querySelector('.mainbox')
+        let content=document.querySelector('.content');
+        let button=document.querySelector('.btn');
+        close.addEventListener('click',()=>{
+            mainbox.style.display='none';
+            content.style.display='block';
+            
+        });
+        button.addEventListener('click',()=>{
+            mainbox.style.display='none';
+            content.style.display='block';
+            
+        })
+    </script>
+</body>
+</html>

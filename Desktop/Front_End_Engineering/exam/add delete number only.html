@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="head">
+      <input type="number" placeholder="Enter the Number" id="inputVal" />
+      <button id="add">Add</button>
+      <button id="delete">Delete</button>
+    </div>
+
+    <div id="showArray"></div>
+
+    <script>
+      let arr = [];
+      let showArray = document.getElementById("showArray");
+      let div = document.createElement("div");
+      let addBtn = document.getElementById("add");
+      let deleteBtn = document.getElementById("delete");
+      let inputVal = document.getElementById("inputVal");
+
+
+      function renderArray() {
+        showArray.innerHTML = "";
+        let div = document.createElement("div");
+        div.innerHTML = arr; 
+        showArray.appendChild(div);
+      }
+
+      addBtn.addEventListener("click", () => {
+        let val = inputVal.value;
+        console.log(val);
+        arr.push(val);
+        renderArray();
+        inputVal.value = ""
+      });
+
+      deleteBtn.addEventListener("click", ()=>{
+        let val = inputVal.value;
+        let index = arr.indexOf(val);
+        if(index !== -1){
+            arr.splice(index, 1);
+            inputVal.value = ""
+            renderArray();
+        }
+        else{
+            alert("Not present");
+        }
+      })
+    </script>
+  </body>
+</html>

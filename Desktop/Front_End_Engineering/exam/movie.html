@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+        }
+        header{
+            background-color: #333;
+            color: #fff;
+            padding: 1em ;
+            text-align: center;
+
+        }
+        main{
+            padding: 0 10em;
+        }
+        .movies{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto;
+            gap: .5em;
+        }
+        .movie{
+            height: 400px;
+            /* aspect-ratio: 1/3; */
+            /* border: 2px solid black; */
+            object-fit: cover;
+            padding: .2em;
+        }
+        .movies img{
+        height:75%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        }
+        button{
+            padding: .3em;
+            background-color: bisque;
+            border: none;
+            border-radius: 10px;
+        }
+        button:hover{
+            background-color: rgba(79, 10, 10, 0.871);
+            color: #fff;
+        }
+        .rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+}
+
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+
+.rating > span:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #ccc;
+}
+
+.rating > span.full:before {
+  color: gold;
+}
+
+.rating > span.half:before {
+  color: gold;
+  width: 0.5em;
+  overflow: hidden;
+  line-height: 1;
+}
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <header>
+            <h1>Movies</h1>
+            <div class="selectBox">
+                <select id="rating" name="rating">
+                    <option value="" disabled>Select Rating</option>
+                    <option value="all">ALL</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button id="byRating">SortByRating</button>
+            </div>
+        </header>
+        <main>
+            <div class="movies">
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const apiUrl = 'https://feecq.github.io/api/movies.json';
+        let moviesData = [];
+
+        // Replacing fetch with XMLHttpRequest (AJAX)
+        function fetchMovies() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', apiUrl, true);
+
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    moviesData = JSON.parse(xhr.responseText);
+                    renderMovies(moviesData);
+                } else {
+                    console.error('Error: Could not fetch data');
+                }
+            };
+
+            xhr.onerror = function() {
+                console.error('Request error...');
+            };
+
+            xhr.send();
+        }
+
+        fetchMovies();
+
+        const moviesList = document.querySelector('.movies');
+        const ratingSelect = document.querySelector('#rating');
+        const sortRating = document.querySelector('#byRating');
+
+        const renderMovies = (movies) => {
+            if (movies.length == 0) {
+                moviesList.innerHTML = <div>Data Not Available, select another option...</div>;
+                return;
+            }
+            const movieItems = movies.map(movie => `
+                <div class="movie">
+                    <img src="${movie.image}" alt="${movie.movie}">
+                    <div class="movie-info">
+                        <h3>${movie.movie}</h3>
+                        <p>Rating: ${movie.rating / 2}/5</p>
+                        <p class="rating">${setStars(movie.rating/2)}</p>
+                        <button onclick="load('${movie.imdb_url}')">IMDB</button>
+                    </div>
+                </div>
+            `).join('');
+            moviesList.innerHTML = movieItems;
+        };
+
+        const setStars = (movieRating) => {
+    let ratingDiv = '';
+    for (let i = 0; i < 5; i++) {
+        ratingDiv += '<span class="star"></span>';
+    }
+    const ratingHtml = <div class="rating">${ratingDiv}</div>;
+    const ratingElement = document.createElement('div');
+    ratingElement.innerHTML = ratingHtml;
+    const stars = ratingElement.querySelectorAll('.star');
+    for (let i = 0; i < 5; i++) {
+        if (i < Math.floor(movieRating)) {
+            stars[i].classList.add('full');
+        } else  {
+            stars[i].classList.add('half');
+        }
+    }
+    return ratingElement.innerHTML;
+};
+        ratingSelect.addEventListener('change', (e) => {
+            const selectedRating = e.target.value;
+            if (selectedRating === 'all') {
+                renderMovies(moviesData);
+            } else {
+                const filteredMovies = moviesData.filter(movie => (movie.rating / 2) >= parseInt(selectedRating));
+                renderMovies(filteredMovies);
+            }
+        });
+
+        sortRating.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sortedMovies = moviesData.slice().sort((a, b) => a.rating - b.rating);
+            renderMovies(sortedMovies);
+        });
+
+        function load(param) {
+            window.open(param, '_blank');
+        }
+    </script>
+</body>
+</html>

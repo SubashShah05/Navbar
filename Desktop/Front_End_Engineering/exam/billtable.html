@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Bill</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header><h2>Bill Form</h2></header>
+    <main>
+        <form action="">
+            <label for="product">Product:</label>
+            <input type="text" id="product" name="product"><br><br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity"><br><br>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price"><br><br>
+            <input type="submit" value="Add-To-Bill" id="Submit">
+        </form>
+        <br><br>
+        <table border="2" cellspacing="0" cellpadding="2" >
+            <thead>
+            
+                    <th>S.No</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                
+            </thead>
+            <tbody>
+                
+            </tbody>
+            <tfoot >
+                    <th colspan="3">Gross Total</th>
+                    <th colspan="2" id="total"></th>
+             
+            </tfoot>
+        </table>
+    </main>
+    <script>
+        let SNo=1;
+        let total=0;
+        let table=document.querySelector('table');
+        let tbody=table.querySelector('tbody');
+        let product = document.getElementById('product');
+        let quantity = document.getElementById('quantity');
+        let price = document.getElementById('price');
+        let submit = document.getElementById('Submit');
+
+        submit.addEventListener('click',(e)=>{
+            e.preventDefault();
+            let newRow = document.createElement('tr');
+            let cell1 = document.createElement('td');
+            let cell2 = document.createElement('td');
+            let cell3 = document.createElement('td');
+            let cell4 = document.createElement('td');
+            let cell5 = document.createElement('td');
+            cell1.textContent=SNo;
+            SNo++;
+            cell2.textContent=product.value;
+            cell3.textContent=quantity.value;
+            cell4.textContent=price.value;
+            cell5.textContent=parseInt(quantity.value)*parseInt(price.value);
+            total+=parseInt(quantity.value)*parseInt(price.value);
+            newRow.append(cell1,cell2,cell3,cell4,cell5);
+            tbody.append(newRow);
+            document.getElementById('total').textContent=total;
+        })
+    </script>
+</body>
+</html>

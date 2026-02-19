@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+</head>
+<body>
+    <h2>Array: <span id="arrayDisplay"></span></h2>
+    <div id="inputArea">
+        <input type="text" placeholder="Enter num to delete" >
+        <button>Delete Element</button>
+    </div>
+    <script>
+        let array = [1, 2, 3, 4, 5,4,6,0,1,4,8];
+        let display = document.getElementById('arrayDisplay');
+        let inputVal = document.querySelector('input');
+        let delBtn = document.querySelector('button');
+
+        delBtn.addEventListener('click',()=>{
+            let elem= parseInt(inputVal.value);
+            if(!isNaN(elem)){
+                array = array.filter((val, index) => val !== elem);
+                updateArray();
+                inputVal.value="";
+            }
+        })
+      let  updateArray=()=>{
+        display.textContent= array.join(', ');
+        }
+        updateArray();
+    </script>
+</body>
+</html>

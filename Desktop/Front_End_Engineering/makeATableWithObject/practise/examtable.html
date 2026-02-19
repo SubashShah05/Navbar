@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form-Table</title>
+</head>
+<body>
+    <div id="inputArea">
+        <h2 align="center">Hotel Registration Form</h2>
+        Full Name: <input type="text" id="fullName"/> <br/><br/>
+        Email Address: <input type="email" id="email"/><br/><br/>
+        Contact Number: <input type="number" id="contactNumber"/><br/><br/>
+        Arrival Date: <input type="date" id="arrivalDate"/><br/><br/>
+        Departure Date: <input type="date" id="deptDate"/><br/><br/>
+        Number of Adults: <input type="number" id="numAdult"/><br/><br/>
+        Number of Childrens: <input type="number" id="numChildren"/><br/><br/>                          
+
+        <input type="button" value="Submit" id="btnSubmit"/>
+    </div>
+    <div id="tableArea">
+        <table border="1" id="customerTable">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Contact Number</th>
+                    <th>Arrival Date</th>
+                    <th>Departure Date</th>
+                    <th>Number of Adults</th>
+                    <th>Number of Childrens</th>                   
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Global array to store customer details
+        let customerDetails = [];
+    
+        // Function to be called when the button is clicked
+        function saveRecord() {
+            // Create formData object to store input values
+            let formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                contactNumber: document.getElementById('contactNumber').value,
+                arrivalDate: document.getElementById('arrivalDate').value,
+                deptDate: document.getElementById('deptDate').value,
+                numAdult: document.getElementById('numAdult').value,
+                numChildren: document.getElementById('numChildren').value
+            };
+    
+            // Push formData into global customerDetails array
+            customerDetails.push(formData);
+    
+            // Save customerDetails array to localStorage
+            localStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+    
+            // Call addRecordToTable to display the data in the table
+            addRecordToTable(formData);
+    
+            // Clear form after submission
+            clearForm();
+        }
+    
+        // Function to add record to the table
+        function addRecordToTable(formData) {
+            // Get the table body
+            const tableBody = document.querySelector('#customerTable tbody');
+            
+            // Create a new row
+            const newRow = document.createElement('tr');
+            
+            // Create cells for each property and append them to the row
+            for (let key in formData) {
+                const newCell = document.createElement('td');
+                newCell.textContent = formData[key];
+                newRow.appendChild(newCell);
+            }
+    
+            // Append the new row to the table body
+            tableBody.appendChild(newRow);
+        }
+    
+        // Function to load data from localStorage when the window loads
+        function loadData() {
+            // Check if customerDetails is present in localStorage
+            if (localStorage.getItem('customerDetails')) {
+                // Load the data from localStorage into the customerDetails array
+                customerDetails = JSON.parse(localStorage.getItem('customerDetails'));
+                
+                // Render the data in the table
+                customerDetails.forEach(record => addRecordToTable(record));
+            }
+        }
+    
+        // Clear the form fields after submission
+        function clearForm() {
+            document.getElementById('fullName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('contactNumber').value = '';
+            document.getElementById('arrivalDate').value = '';
+            document.getElementById('deptDate').value = '';
+            document.getElementById('numAdult').value = '';
+            document.getElementById('numChildren').value = '';
+        }
+    
+        // Attach saveRecord function to the submit button
+        document.getElementById('btnSubmit').addEventListener('click', saveRecord);
+    
+        // Call loadData function when the window loads
+        window.addEventListener('load', loadData);
+    </script>
+    
+</body>
+</html>

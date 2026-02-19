@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+    <br><br>
+    <span id="hr">0 hr:</span>
+    <span id="min">0 min:</span>
+    <span id="sec">0 sec</span>
+
+    <script>
+        let start = document.getElementById("start");
+        let pause = document.getElementById("pause");
+        let reset = document.getElementById("reset");
+        let hour = document.getElementById("hr");
+        let minute = document.getElementById("min");
+        let second = document.getElementById("sec");
+
+        let sec = 0;
+        let min = 0;
+        let timer = false;
+
+        start.addEventListener("click", () => {
+            if (!timer) {
+                timer = setInterval(() => {
+                    sec++;
+
+                    second.innerHTML = `${sec} sec`;
+
+                    // Update minutes
+                    if (sec >= 60) {
+                        sec = 0;
+                        min++;
+                        minute.innerHTML = `${min} min`;
+                    }
+                }, 1000); // Update every 1000 ms (1 second)
+            }
+        });
+
+        pause.addEventListener("click", () => {
+            clearInterval(timer);
+            timer = false; 
+        });
+
+        reset.addEventListener("click", () => {
+            clearInterval(timer); // Stop the timer
+            timer = false; // Reset the timer ID
+            sec = 0; // Reset seconds
+            min = 0; // Reset minutes
+            second.innerHTML = "0 sec"; // Update the displayed seconds
+            minute.innerHTML = "0 min"; // Update the displayed minutes
+            hour.innerHTML = "0 hr:"; // Reset hours (if implemented in future)
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="button">Fire</button>
+
+    <script>
+      let url = "https://dummyjson.com/products";
+      let btn = document.getElementById("button");
+      let sum = 0;
+
+      btn.addEventListener("click", ()=>{
+        let xhr  = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+
+        xhr.addEventListener("load", ()=>{
+            let res = xhr.response;
+            let data = JSON.parse(res);
+            console.log(data)
+            let dataObj = data.products        
+            console.log(dataObj)
+
+            dataObj.forEach((e)=>{
+              if(e.category === "beauty"){
+                sum += e.stock;
+              }
+             
+                
+            })
+            console.log(sum)
+        })
+
+        xhr.send();
+      })
+
+    </script>
+  </body>
+</html>

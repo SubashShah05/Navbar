@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <style>
+        /* Style for each accordion box */
+        .box {
+            width: 90%;                /* Set width of each box */
+            height: 100px;             /* Set height of each box */
+            border: 1px solid #ccc;   /* Border around each box */
+            margin-bottom: 10px;       /* Space between boxes */
+            padding: 10px;             /* Padding inside the box */
+            cursor: pointer;          /* Cursor turns to pointer when hovered */
+        }
+        /* Initially, hide the text inside the box */
+        .text {
+            display: none;            /* Hide text by default */
+        }
+        /* Display the text when this class is added */
+        .display {
+            display: block;           /* Show the text */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Accordions</h2> <!-- Title of the page -->
+    </header>
+    <main>
+        <!-- Each box with a title and a hidden paragraph -->
+        <div class="box">
+            <div class="title">Hello</div>
+            <p class="text">First paragraph content</p>
+        </div>
+        <div class="box">
+            <div class="title">Second</div>
+            <p class="text">Second paragraph content</p>
+        </div>
+        <div class="box">
+            <div class="title">Third</div>
+            <p class="text">Third paragraph content</p>
+        </div>
+        <div class="box">
+            <div class="title">Fourth</div>
+            <p class="text">Fourth paragraph content</p>
+        </div>
+        <div class="box">
+            <div class="title">Fifth</div>
+            <p class="text">Fifth paragraph content</p>
+        </div>
+    </main>
+    <script>
+        // Select all elements with the class "box"
+        const boxes = document.querySelectorAll('.box');
+        
+        // Loop through each box and add a click event listener
+        boxes.forEach(box => {
+            box.addEventListener('click', () => {
+                // Find the text inside the clicked box
+                const text = box.querySelector('.text');
+                
+                // Toggle the "display" class to show or hide the text
+                text.classList.toggle('display');  
+            });
+        });
+    </script>
+</body>
+</html>
