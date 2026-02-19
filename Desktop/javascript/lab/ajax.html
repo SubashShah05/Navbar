@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, tr, td{
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table> -->
+    <script>
+        const users = [
+
+            { "id": 1, "name": "John Doe", "username": "johndoe", "email": "johndoe@example.com", "address": "123 Main St" },
+
+            { "id": 2, "name": "Jane Doe", "username": "janedoe", "email": "janedoe@example.com", "address": "456 Market St" },
+
+            { "id": 3, "name": "Jim Smith", "username": "jimsmith", "email": "jimsmith@example.com", "address": "789 Oak St" },
+
+            { "id": 4, "name": "Sara Wilson", "username": "sarawilson", "email": "sarawilson@example.com", "address": "111 Maple Ave" },
+
+            { "id": 5, "name": "Bob Johnson", "username": "bobjohnson", "email": "bobjohnson@example.com", "address": "222 Elm St" },
+
+            { "id": 6, "name": "Amy Williams", "username": "amywilliams", "email": "amywilliams@example.com", "address": "333 Pine St" },
+
+            { "id": 7, "name": "Michael Brown", "username": "michaelbrown", "email": "michaelbrown@example.com", "address": "444 Cedar St" },
+
+            { "id": 8, "name": "Emily Davis", "username": "emilydavis", "email": "emilydavis@example.com", "address": "555 Birch St" },
+
+            { "id": 9, "name": "William Martinez", "username": "williammartinez", "email": "williammartinez@example.com", "address": "666 Cedar St" },
+
+            { "id": 10, "name": "Ashley Rodriguez", "username": "ashleyrodriguez", "email": "ashleyrodriguez@example.com", "address": "777 Pine St" }
+
+        ]
+
+         users.forEach(user=>{
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            const td2 = document.createElement('td');
+                const td4 = document.createElement('td');
+             const td5 = document.createElement('td');
+
+           td1.innerText = user.id;
+           td2.innerText = user.name;
+           td3.innerText = user.username;
+           td4.innerText = user.email;
+            td5.innerText = user.address
+          tr.append(td1,td2,td3,td4,td5)
+          document.querySelector('table tbody').append(tr);
+         })
+
+
+        users.forEach(user=>{
+            const tr = document.createElement('tr');
+            for(key in user){
+                const td = document.createElement('td');
+                td.innerText = user[key];
+                tr.append(td);
+            }         
+           document.querySelector('table tbody').append(tr);
+        })
+
+    </script>
+</body>
+
+</html>

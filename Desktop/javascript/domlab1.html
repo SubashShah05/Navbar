@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="test">DOM</p>
+    <h1 class="test">Document Object Model</h1>
+    <p class="test">Dom</p>
+    <h1 class="test">Document Object Model</h1>
+    <h1 class="test">Document Object Model</h1>
+</body>
+<script>
+const d1 = document.querySelectorAll('.test')
+console.log(d1)
+d1.innerHTML="Document Object Model"
+d1.style.color="blue"
+const d2 =d1[1]
+
+d2.innerHTML="DOM"
+</script>
+</html>

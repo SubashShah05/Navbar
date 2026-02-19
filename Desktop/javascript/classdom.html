@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 onclick="doSomething()">DOM</h1>
+    <script>
+        const head = document.querySelector('h1')
+       // const input = document.querySelector("input")
+
+
+      //  head.onclick =function(){
+        //head.innerText="document object model"
+      //  head.style.color="red"
+       // head.setAttribute("id",heading)
+      //  }
+
+
+     // head.addEventListener("mouseleave",function(){
+      //  console.log("event triggered")
+      //  head.innerText="document object model"
+      // head.style.color="red"
+     //head.setAttribute("id",heading)
+     //console.log('mouseenter')
+     // })
+
+     /////input.addEventListener("keypress",function(ev){
+      //  console.log('keypress')
+     //   head.innerText="document object model"
+      // head.style.color="red"
+      // head.setAttribute("id",heading)
+    //})
+
+
+let count =10;
+head.addEventListener("click",function(){
+    const para = document.createElement("p")
+    const div = document.getElementById("box")
+    para.innerText = count;
+    para.setAttribute("class","para");
+    para.style.color ="red"
+
+
+    div.appendChild(para)
+    count +=10;
+})
+     
+
+    </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Subash</h1>
+
+    <script>
+        function sum(...args){   //... this is reset parameter
+            let result = 0;
+
+            for(let i =0 ;i<args.length;i++){
+                result +=args[i];
+            }
+            console.log(result);
+        }
+
+        sum(2,3,4,5);
+        
+    </script>
+</body>
+</html>

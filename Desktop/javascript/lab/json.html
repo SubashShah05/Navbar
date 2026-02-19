@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="inp">
+    <button id="btn">Add</button>
+    <script>
+        const input =document.getElementById('inp')
+        const button = document.getElementById('btn')
+
+
+
+        let task;
+        const fetchedData = getItem("task")
+        if(fetchedData)
+        {localStorage.            task=JSON.parse(fetchedData)
+            console.log(task)
+        }
+        else{
+            task=[]
+        }
+        //console.log(fetchedData)
+        //let task=JSON.parse(fetchedData)
+        //console.log(task)
+
+        task.forEach(task=>{
+            const para = document.createElement('p')
+            para.innerText = value
+            document.body.appendChild(para)
+
+        })
+            
+        
+
+        let taskArray = [];
+
+
+
+        button.addEventListener('click',function(){
+            let userInput = input.value
+           /// console.log(userInput)
+
+           taskArray.push(userInput)
+          const stringfiedArray= JSON.stringify(taskArray)
+
+          localStorage.setItem("task",stringfiedArray) //set data into local storage
+
+
+
+
+         // console.log(stringfiedArray)
+          // console.log(taskArray)
+         // const parsedArary=JSON.parse(stringfiedArray)
+         // console.log(parsedArary)
+
+            const para = document.createElement('p')
+            para.innerText = userInput
+            document.body.appendChild(para)
+
+            input.value=""
+        })
+
+
+
+
+    </script>
+</body>
+</html>

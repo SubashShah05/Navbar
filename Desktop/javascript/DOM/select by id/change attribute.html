@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<button id="btn" name="form2">Send</button>
+
+    
+</body>
+
+<script>
+    let btn = document.getElementById("btn")
+   // btn.setAttribute("class","form1") // to set the value
+
+  // let val = btn.getAttribute("name") //to give the value
+ //  console.log(val);
+ btn.removeAttribute("name")
+ let val = btn.hasAttribute("name") //if this attribute are present or not
+ console.log(val)
+</script>
+</html>

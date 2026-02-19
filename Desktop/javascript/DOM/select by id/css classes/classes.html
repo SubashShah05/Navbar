@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color{
+            background-color: yellow;
+            color:black;
+        }
+        .dim{
+            border:1px solid red;
+            padding:100px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="box" class="color dim">
+        <p>This is a dummy Text!</p>
+    </div>
+
+    <script>
+        let box= document.getElementById("box");
+
+        //console.log(box.classList);
+
+        
+        //console.log(box.className)
+
+       // box.className += "dim "; // to add class in div
+
+        //for(let css of box.classList){  //to print class list for using loop also
+         //   console.log(css);
+        //} 
+
+       // box.classList.add("dim"); // to add extra class also
+
+      //  box.classList.remove("dim")  // to remove class also
+
+      //  box.classList.replace("color","dim") // to replace it
+
+
+      //let result = box.classList.contains("dim") //this dim class are present or not it give boolean value
+      //console.log(result)
+
+     // box.classList.toggle("dim") //dim class lageko xa ki xaina legeko hunxa bhane hataidinxa lageko xaina bhane lagaidinxa
+    </script>
+</body>
+</html>
